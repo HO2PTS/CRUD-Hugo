@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1> HELLO <i class="fa-solid fa-hand"></i> Voici la liste des Stagiaires <i class="fa-solid fa-dollar-sign"></i> </h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Téléphone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Poste</th>
+      <th scope="col">Salaire</th>
+      <th scope="col">Birth Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in stagiaires %}
+    <tr>
+      <th scope="row">{{ item.id }}</th>
+      <td>{{ item.prenom }}</td>
+      <td>{{ item.nom }}</td>
+      <td>{{ item.telephone }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.adresse }}</td>
+      <td>{{ item.poste }}</td>
+      <td>{{ item.salaire }}</td>
+      <td>{{ item.dateDeNaissance|date("d/m/Y")  }}</td>
+      <td> <a href="{{ path('edit', {
+        id: item.id
+      }) }}"> <i class="fa-solid fa-pen-to-square"></i> </a>  </td>
+      <td> <a href="{{ path('delete', {
+        id: item.id
+      }) }}">  <i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<div class="container">
+    <div class="row">
+        {{ form_start(formStagiaire, {
+            attr:{
+                novalidate: 'novalidate'
+            }
+        }) }}
+
+
+        <div class="d-flex row">
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.prenom) }}
+            </div>
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.nom) }}
+            </div>
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.telephone) }}
+            </div>
+        <div class="d-flex row">
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.email) }}
+            </div>
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.adresse) }}
+            </div>
+            <div class="col-md-3">
+            {{ form_row(formStagiaire.poste) }}
+            </div>
+        </div>
+        <div class="d-flex row">
+        <div class="col-md-3">
+        {{ form_row(formStagiaire.salaire) }}
+        </div>
+        <div class="col-md-3">
+        {{ form_row(formStagiaire.date_de_naissance)}}
+        </div>
+        <div class="col-md-3 mt-4">
+            <button type="submit" class="btn btn-primary mt-3 pt-1">
+            {% if editMode %}
+
+                Enregistrer les modifications
+
+            {% else %}
+                
+                Ajouter l'article
+
+            {% endif %}
+        </div>
+        {{ form_end(formStagiaire) }}
+        </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
