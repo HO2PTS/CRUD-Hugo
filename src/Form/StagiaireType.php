@@ -21,7 +21,7 @@ class StagiaireType extends AbstractType
             ->add('adresse')
             ->add('poste')
             ->add('salaire')
-            ->add('date_de_naissance', DateType::class, ['widget' => "text", "format" => "dd-MM-yyyy"])
+            ->add('date_de_naissance', DateType::class, ["years" => 'range'(1900, 2022)])
         ;
     }
 
