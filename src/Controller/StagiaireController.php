@@ -14,8 +14,10 @@ use Symfony\Component\Validator\Constraints\Date;
 
 class StagiaireController extends AbstractController
 {
-    #[Route('/stagiaire', name: 'app_stagiaire')]
-    #[Route('/stagaire/edit/{id}', name: 'edit')]
+
+    #[Route('/', name: 'app_stagiaire')]
+    #[Route('/stagaire/{id}', name: 'edit')]
+    
     public function index(StagiaireRepository $repo, Request $globals, EntityManagerInterface $manager, Stagiaire $stagiaire = null): Response
     {
 
